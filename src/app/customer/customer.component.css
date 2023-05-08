@@ -1,0 +1,14 @@
+.full-width {
+    width: 100%;
+}
+
+div{
+    padding-block: 2rem;
+}
+
+
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
