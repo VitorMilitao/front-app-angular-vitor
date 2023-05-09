@@ -1,34 +1,40 @@
 <div>
     <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Primeiro Nome: </mat-label>
-            <input type="text" matInput placeholder="Digite seu primeiro nome" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Último Nome: </mat-label>
-            <input type="text" matInput placeholder="Digite seu último nome" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>CPF: </mat-label>
-            <input type="text" matInput placeholder="Digite seu CPF" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Data de Nascimento: </mat-label>
-            <input type="date" matInput placeholder="Digite sua data de nascimento" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Renda Mensal: R$ </mat-label>
-            <input type="number" matInput placeholder="Digite sua renda mensal (R$)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Email: </mat-label>
-            <input type="email" matInput placeholder="Digite seu email" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Senha: </mat-label>
-            <input type="password" matInput placeholder="Digite sua senha" />
-        </mat-form-field>
-        <button mat-raised-button color="primary">Salvar</button>
+      <mat-form-field appearance="fill">
+        <mat-label>Primeiro Nome: </mat-label>
+        <input type="text" matInput name="firstNameCustomer" [(ngModel)]="customer.firstNameCustomer" placeholder="Digite seu primeiro nome" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Último Nome: </mat-label>
+        <input type="text" matInput name="lastNameCustomer" [(ngModel)]="customer.lastNameCustomer" placeholder="Digite seu último nome" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CPF: </mat-label>
+        <input type="text" matInput name="cpfCustomer" [(ngModel)]="customer.cpfCustomer" placeholder="Digite seu CPF" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data de Nascimento: </mat-label>
+        <input type="date" matInput name="birthdateCustomer" [(ngModel)]="customer.birthdateCustomer" placeholder="Digite sua data de nascimento" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Renda Mensal: R$ </mat-label>
+        <input type="number" matInput name="monthlyIncomeCustomer" [(ngModel)]="customer.monthlyIncomeCustomer" placeholder="Digite sua renda mensal (R$)" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email: </mat-label>
+        <input type="email" matInput name="emailCustomer" [(ngModel)]="customer.emailCustomer" placeholder="Digite seu email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Senha: </mat-label>
+        <input type="password" matInput name="passwordCustomer" [(ngModel)]="customer.passwordCustomer" placeholder="Digite sua senha" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="saveCustomer()">Salvar</button>
+      <br/>
+      <div role="alert" *ngIf="success == true">
+        <span>Cliente {{customer.firstNameCustomer}} cadastrado com sucesso!</span>
+      </div>
+      <div role="alert" *ngFor="let error of errors"> 
+        <span>{{error}}</span>
+      </div>
     </form>
-</div>
-
+  </div>

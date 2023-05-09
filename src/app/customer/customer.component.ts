@@ -1,37 +1,76 @@
 import { Component } from '@angular/core';
 import { Customer } from '../model/customer';
 import { CustomerService } from '../service/customer.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent {  
+export class CustomerComponent {
 
-  constructor(private service: CustomerService){
-  }
+  success: boolean = false;
+  errors!: String[];
 
-  ngOnInit():void{
-    this.saveCustomer();
-  }
+  constructor(private service: CustomerService){}
   
   customer: Customer = {
     idCustomer:'',
-    firstNameCustomer: 'Carlos',
-    lastNameCustomer: 'Lanches',
-    cpfCustomer: '43050866039',
-    birthdateCustomer: '05/03/1900',
+    firstNameCustomer: '',
+    lastNameCustomer: '',
+    cpfCustomer: '',
+    birthdateCustomer: '',
     dataCreatedCustomer: '',
-    monthlyIncomeCustomer: '80000',
     statusCustomer: true,
-    emailCustomer: 'carloslanches@gmail.com',
-    passwordCustomer: '123456'
+    monthlyIncomeCustomer: '',
+    emailCustomer: '',
+    passwordCustomer: ''
+}
+/*
+saveCustomer(){
+  const datePipe = new DatePipe('en-US');
+  this.customer.birthdateCustomer = datePipe.transform
+  (this.customer.birthdateCustomer, 'dd/MM/yyyy');
+
+  this.service.save(this.customer).subscribe({next: () => {
+    this.success = true;
+    this.errors = [];
+  }, error: ex => {
+    if (ex.error.errors) {
+      ex.error.errors.forEach((element:any) =>  {
+        this.success = false;
+        this.errors = ex.error.errors;      
+} else {
+        this.success = false;
+        this.errors = [];
+    });
+  }
+});
+}
 }
 
-saveCustomer() {
-  this.service.save(this.customer).subscribe(response => {
-    console.log(response)
-  })
+*/
+
+  saveCustomer() {
+    const datePipe = new DatePipe('en-US');
+    this.customer.birthdateCustomer = datePipe.transform
+    (this.customer.birthdateCustomer, 'dd/MM/yyyy');
+
+    this.service.save(this.customer).subscribe({
+      next: () => {
+        this.success = true;
+        this.errors = [];
+      },
+      error: (ex) => {
+        if (ex.error.errors) {
+          this.success = false;
+          this.errors = ex.error.errors;
+        } else {
+          this.success = false;
+          this.errors = [];
+        }
+      },
+    });
   }
 }

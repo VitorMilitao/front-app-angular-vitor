@@ -7,12 +7,15 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerComponent } from './customer/customer.component';
+import { CustomerService } from './service/customer.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,14 @@ import { CustomerComponent } from './customer/customer.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: 
+  [
+    CustomerService,
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
