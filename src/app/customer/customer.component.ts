@@ -27,31 +27,23 @@ export class CustomerComponent {
     emailCustomer: '',
     passwordCustomer: ''
 }
-/*
-saveCustomer(){
-  const datePipe = new DatePipe('en-US');
-  this.customer.birthdateCustomer = datePipe.transform
-  (this.customer.birthdateCustomer, 'dd/MM/yyyy');
 
-  this.service.save(this.customer).subscribe({next: () => {
-    this.success = true;
-    this.errors = [];
-  }, error: ex => {
-    if (ex.error.errors) {
-      ex.error.errors.forEach((element:any) =>  {
-        this.success = false;
-        this.errors = ex.error.errors;      
-} else {
-        this.success = false;
-        this.errors = [];
-    });
-  }
-});
-}
+cleanForms(){
+  this.customer = 
+  {
+    idCustomer:'',
+    firstNameCustomer: '',
+    lastNameCustomer: '',
+    cpfCustomer: '',
+    birthdateCustomer: '',
+    dataCreatedCustomer: '',
+    statusCustomer: true,
+    monthlyIncomeCustomer: '',
+    emailCustomer: '',
+    passwordCustomer: ''
 }
 
-*/
-
+}
   saveCustomer() {
     const datePipe = new DatePipe('en-US');
     this.customer.birthdateCustomer = datePipe.transform
@@ -70,6 +62,9 @@ saveCustomer(){
           this.success = false;
           this.errors = [];
         }
+      },
+      complete: () => {
+        this.cleanForms()
       },
     });
   }
